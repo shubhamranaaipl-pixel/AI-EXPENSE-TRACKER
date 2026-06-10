@@ -21,7 +21,7 @@ export class ExpenseRepository{
     ){
         return Expense.findByIdAndUpdate(id,
             data,
-            {new:false}
+            {new:true}
         )
     }
 

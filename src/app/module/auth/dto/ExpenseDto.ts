@@ -3,5 +3,6 @@ export interface IExpenceDto{
     title:string,
     amount:number,
     description?:string,
-    expenseDate:Date
+    expenseDate:Date,
+    category?:string
 }

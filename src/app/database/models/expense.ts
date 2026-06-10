@@ -11,6 +11,9 @@ const expenseSchema=new mongoose.Schema({
            type:String,
            required:true
         },
+        category:{
+          type:String,
+        },
         amount:{
             type:Number,
             required:true
