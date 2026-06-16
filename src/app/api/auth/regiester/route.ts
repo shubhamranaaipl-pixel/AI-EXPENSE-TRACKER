@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { connectDB } from "@/app/database/mongodb";
+import { connectDB } from "@/database/mongodb";
 import { UserRepositaory } from "@/app/module/auth/repositories/userRepositeries";
 import { AuthController } from "@/app/module/auth/controller/authController";
 import { AuthServices } from "@/app/module/auth/services/AuthServices";
@@ -23,7 +23,7 @@ export async function POST(request: Request) {
 
     return NextResponse.json(
       {
-        succes: true,
+        success: true,
         data: user,
       },
       {

@@ -1,4 +1,4 @@
-import { Expense } from "@/app/database/models/expense";
+import { Expense } from "@/database/models/expense";
 import mongoose from "mongoose";
 
 export class DashboardRepository {
@@ -11,7 +11,28 @@ export class DashboardRepository {
       },
       {
         $facet: {
+          totalIncome: [
+            {
+              $match: {
+                type: "income",
+              },
+            },
+            {
+              $group: {
+                _id: null,
+                total: {
+                  $sum: "$amount",
+                },
+              },
+            },
+          ],
+
           totalExpense: [
+            {
+              $match: {
+                type: "expense",
+              },
+            },
             {
               $group: {
                 _id: null,
@@ -24,6 +45,11 @@ export class DashboardRepository {
 
           categoryExpense: [
             {
+              $match: {
+                type: "expense",
+              },
+            },
+            {
               $group: {
                 _id: "$category",
                 total: {
@@ -35,10 +61,15 @@ export class DashboardRepository {
 
           monthlyExpense: [
             {
+              $match: {
+                type: "expense",
+              },
+            },
+            {
               $group: {
                 _id: {
                   month: {
-                    $month: "$createdAt",
+                    $month: "$expenseDate",
                   },
                 },
                 total: {
@@ -47,8 +78,19 @@ export class DashboardRepository {
               },
             },
           ],
+
+          recentTransactions: [
+            {
+              $sort: {
+                expenseDate: -1,
+              },
+            },
+            {
+              $limit: 5,
+            },
+          ],
         },
       },
     ]);
   }
-}
+} 

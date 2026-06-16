@@ -1,4 +1,4 @@
-import { User } from "@/app/database/models/User";
+import { User } from "@/database/models/User";
 import { IUpdateProfile } from "../dto/updateProfiledto";
 
 export class ProfileRepositary{

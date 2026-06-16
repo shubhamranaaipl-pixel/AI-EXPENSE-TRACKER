@@ -9,12 +9,19 @@ export class DashBoardServices {
     }
 
     const [result]=await this.dashboardRespositery.getDashboardStatus(userId);
+    const totalIncome=result.totalIncome[0]?.total ||0;
+     const totalExpense=result.totalExpense[0]?.total ||0;
+     const totalBalance=totalIncome-totalExpense;
+
 
 
     return {
-        totalExpense:result.totalExpense[0]?.total||0,
+      totalIncome,
+        totalExpense,
+        totalBalance,
         categoryExpense:result.categoryExpense,
-        monthlyExpense:result.monthlyExpense
+        monthlyExpense:result.monthlyExpense,
+        recentTransactions:result.recentTransactions
     }
 
 }

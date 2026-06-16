@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { connectDB } from "@/app/database/mongodb";
+import { connectDB } from "@/database/mongodb";
 import { UserRepositaory } from "@/app/module/auth/repositories/userRepositeries";
 import { AuthController } from "@/app/module/auth/controller/authController";
 import { AuthServices } from "@/app/module/auth/services/AuthServices";
@@ -20,16 +20,26 @@ export async function POST(request: Request) {
     const validateData = LoginValidator.parse(body);
 
     const login = await authController.login(validateData);
+  
 
-    return NextResponse.json(
+    const response= NextResponse.json(
       {
         success: true,
-        token: login,
+        message:"Login SuccesFully"
       },
       {
         status: 200,
       },
     );
+    response.cookies.set("token",login.token  ,{
+      httpOnly:true,
+      secure:process.env.NODE_ENV==="production",
+      sameSite:"strict",
+      maxAge:60 * 60,
+      path:"/"
+    })
+
+    return response;
   } catch (err: any) {
     return NextResponse.json(
       {

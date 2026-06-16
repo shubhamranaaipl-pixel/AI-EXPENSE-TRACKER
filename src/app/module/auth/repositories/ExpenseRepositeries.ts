@@ -1,4 +1,4 @@
-import { Expense } from "@/app/database/models/expense";
+import { Expense } from "@/database/models/expense";
 import { IExpenceDto } from "../dto/ExpenseDto";
 
 export class ExpenseRepository{

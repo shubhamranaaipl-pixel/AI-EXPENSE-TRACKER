@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
-import { connectDB } from "@/app/database/mongodb";
-import { authMiddleware } from "@/app/middleware/authMiddleware";
+import { connectDB } from "@/database/mongodb";
+import { authMiddleware } from "@/middleware/authMiddleware";
 import { ProfileController } from "@/app/module/profile/controller/ProfileController";
 import { ProfileRepositary } from "@/app/module/profile/repositeries/ProfileRepositeries";
 import { ProfileServices } from "@/app/module/profile/services/ProfileServices";

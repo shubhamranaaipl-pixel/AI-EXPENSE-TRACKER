@@ -2,8 +2,8 @@ import { NextResponse } from "next/server";
 import { ExpenseController } from "@/app/module/auth/controller/expenseController";
 import { ExpenseRepository } from "@/app/module/auth/repositories/ExpenseRepositeries";
 import { ExpenseServices } from "@/app/module/auth/services/ExpenceServices";
-import { authMiddleware } from "@/app/middleware/authMiddleware";
-import { connectDB } from "@/app/database/mongodb";
+import { authMiddleware } from "@/middleware/authMiddleware";
+import { connectDB } from "@/database/mongodb";
 
 const expenseRepositary = new ExpenseRepository();
 

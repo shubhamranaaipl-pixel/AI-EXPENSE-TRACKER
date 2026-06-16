@@ -30,7 +30,7 @@ export class AuthServices {
     const isMatch = await bcrypt.compare(data.password, user.password);
 
     if (!isMatch) {
-      throw new Error("Envalid Credential");
+      throw new Error("Invalid Credential");
     }
 
     const token = jwt.sign(
@@ -43,7 +43,11 @@ export class AuthServices {
         expiresIn: "1h",
       },
     );
+  
 
-    return token;
+    return {
+      user,
+      token
+    };
   }
 }

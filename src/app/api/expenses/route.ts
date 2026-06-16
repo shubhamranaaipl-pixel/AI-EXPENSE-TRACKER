@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
-import { connectDB } from "@/app/database/mongodb";
+import { connectDB } from "@/database/mongodb";
 import { ExpenseRepository } from "@/app/module/auth/repositories/ExpenseRepositeries";
 import { ExpenseController } from "@/app/module/auth/controller/expenseController";
 import { ExpenseServices } from "@/app/module/auth/services/ExpenceServices";
-import { authMiddleware } from "@/app/middleware/authMiddleware";
+import { authMiddleware } from "@/middleware/authMiddleware";
 import { success } from "zod";
 
 const expenseRepositary = new ExpenseRepository();
@@ -32,7 +32,7 @@ export async function POST(request: Request) {
   } catch (err: any) {
     return NextResponse.json(
       {
-        sucess: false,
+        success: false,
         message: err.message,
       },
       {

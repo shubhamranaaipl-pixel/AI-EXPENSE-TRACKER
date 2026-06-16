@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 
-const expenseSchema=new mongoose.Schema({
+const ExpenseSchema=new mongoose.Schema({
     userId:{
         type:mongoose.Schema.Types.ObjectId,
          ref:"Users",
@@ -22,6 +22,11 @@ const expenseSchema=new mongoose.Schema({
         description:{
             type:String
         },
+        type:{
+          type:String,
+          enum:["income","expense"],
+          required:true
+        },
         expenseDate:{
             type:Date,
             required:true
@@ -31,4 +36,4 @@ const expenseSchema=new mongoose.Schema({
     timestamps:true  
 })
 
-export const Expense=mongoose.model("Expenses",expenseSchema);
+export const Expense=mongoose.models.Expenses || mongoose.model('Expenses', ExpenseSchema);
